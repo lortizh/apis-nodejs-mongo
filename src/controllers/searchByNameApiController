@@ -1,0 +1,32 @@
+const dataService = require('../services/dataService');
+
+// Método para buscar objetos por el atributo nameApi
+exports.getDataByNameApi = async (req, res) => {
+    try {
+        const { nameApi, page = 1, limit = 10 } = req.query;
+        
+        let data;
+        let count;
+
+        if (nameApi) {
+            data = await dataService.findByNameApi(nameApi, page, limit);
+            count = await dataService.countByNameApi(nameApi);
+        } else {
+            data = await dataService.findAll(page, limit);
+            count = await dataService.countAll();
+        }
+
+        if (data.length === 0) {
+            return res.status(404).json({ message: 'No data found' });
+        }
+
+        res.status(200).json({
+            count,
+            totalPages: Math.ceil(count / limit),
+            currentPage: page,
+            results: data
+        });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};

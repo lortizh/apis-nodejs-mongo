@@ -1,0 +1,8 @@
+const express = require('express');
+const router = express.Router();
+const searchByNameApiController = require('../controllers/searchByNameApiController');
+
+// Ruta para buscar objetos por el atributo nameApi
+router.get('/search', searchByNameApiController.getDataByNameApi);
+
+module.exports = router;
