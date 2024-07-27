@@ -27,6 +27,8 @@ This project is a Node.js application that uses Express for the server, Mongoose
 
 3. Create a .env file in the root of the project and add your MongoDB Atlas connection string:
 
+```PORT=3000```
+
 ```MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/<dbname>?retryWrites=true&w=majority```
 
 ## Running the Application
